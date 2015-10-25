@@ -56,3 +56,15 @@ google-search()
     #COWTODO: We should encode the $1 - C++ -> C%2B%2B
     chrome "https://www.google.com/search?q=$1";
 }
+
+## Get/Set the dock size.
+get-dock-size()
+{
+    defaults read com.apple.dock tilesize;
+}
+set-dock-size()
+{
+    #COWTODO: Sanity checks...
+    defaults write com.apple.dock tilesize -int $1
+    killall Dock
+}
