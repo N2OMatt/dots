@@ -25,6 +25,7 @@ alias chrome="open -a \"Google Chrome\"";
 ## This is a must ##
 alias lock-screen='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 
+
 ################################################################################
 ## Prompt                                                                     ##
 ################################################################################
@@ -32,6 +33,7 @@ alias lock-screen='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents
 #   Amanda:Directory:n2omatt $
 #Where Amanda is random colored - Without the black.
 PS1="\[$(tput setaf $(( 1 + RANDOM % 7)) )\]\h\[$(tput sgr 0)\]:\W \u\$ "
+
 
 ################################################################################
 ## Functions                                                                  ##
