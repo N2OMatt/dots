@@ -19,6 +19,12 @@ alias du="du -ch" #Grand Total | Human readable.
 ## Google Chrome ##
 alias chrome="chromium-browser";
 
+## Jekyll ##
+alias jekyll-serve="jekyll serve --watch"
+
+## Gitcheck ##
+alias gitcheck="python ~/.local/lib/python2.7/site-packages/gitcheck/gitcheck.py"
+
 ## This is a must ##
 alias lock-screen='gnome-screensaver-command --lock'
 
