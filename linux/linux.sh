@@ -20,7 +20,7 @@ alias du="du -ch" #Grand Total | Human readable.
 alias chrome="chromium-browser";
 
 ## Jekyll ##
-alias jekyll-serve="jekyll serve --watch"
+alias jekyll-serve="jekyll serve --watch --future"
 
 ## Gitcheck ##
 alias gitcheck="python ~/.local/lib/python2.7/site-packages/gitcheck/gitcheck.py"
