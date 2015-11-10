@@ -88,3 +88,28 @@ files()
     #Don't write the error messages into the terminal.
     $CAJA 2> /dev/null $PATH
 }
+
+## This is a version of Gosh (using gosh actually) that lets us 
+## change the directory (open new window) in the file manager.
+goshf()
+{
+    RET=`gosh -p $1`
+    if [ $? = 0 ]; then
+        files $RET;
+    else
+        echo $RET;
+    fi;
+}
+
+
+## Litte hack that enables the bash completes the stuff for goshf too.
+## COWTODO: There is another better way to do this???
+BASH_COMPLETION_DIR=$(pkg-config --variable=completionsdir bash-completion);
+if [ -f $BASH_COMPLETION_DIR/gosh ]; then
+    if [ ! -e $BASH_COMPLETION_DIR/goshf ]; then
+        sudo cp $BASH_COMPLETION_DIR/gosh $BASH_COMPLETION_DIR/goshf
+        sudo echo "complete -F _gosh goshf" >> $BASH_COMPLETION_DIR/goshf
+        source $BASH_COMPLETION_DIR/goshf
+    fi;
+fi;
+unset BASH_COMPLETION_DIR
