@@ -16,6 +16,9 @@ alias df="df -H" #Human readable.
 ## du
 alias du="du -ch" #Grand Total | Human readable.
 
+## apt stuff ##
+alias apt-update-upgrade="sudo apt-get update -y && sudo apt-get upgrade -y"
+
 ## Google Chrome ##
 alias chrome="chromium-browser";
 
@@ -66,10 +69,10 @@ google-search()
 ## Open the Filesystem Manager into a given path...
 ## If no path was given open the current dir.
 files()
-{   
+{
     #This is needed because caja is located in the /usr/bin
     #And it could be not placed in the PATH env var.
-    local CAJA=$(which caja); 
+    local CAJA=$(which caja);
 
     #Initialize the destination path to the current dir.
     local PATH=".";
@@ -89,7 +92,7 @@ files()
     $CAJA 2> /dev/null $PATH
 }
 
-## This is a version of Gosh (using gosh actually) that lets us 
+## This is a version of Gosh (using gosh actually) that lets us
 ## change the directory (open new window) in the file manager.
 goshf()
 {
