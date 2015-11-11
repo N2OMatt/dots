@@ -51,14 +51,17 @@ PS1="\[$(tput setaf $(( 1 + RANDOM % 7)) )\]\h\[$(tput sgr 0)\]:\W \u\$ "
 ## Saves a manual page to the current directory.
 ## Very same way of call man...
 ## saveman [Section] [Page.]
-saveman-txt() {
+saveman-txt()
+{
     man $1 $2 | col -b > $2$1"_linux.txt"
 }
-saveman-pdf() {
+saveman-pdf() 
+{
 	#Redirect stderr 			Quiet and from stdin.
     man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $2$1"_linux.pdf"
 }
-saveman() {
+saveman() 
+{
     saveman-txt $1 $2
     saveman-pdf $1 $2
 }
