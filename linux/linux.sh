@@ -19,6 +19,10 @@ alias du="du -ch" #Grand Total | Human readable.
 ## apt stuff ##
 alias apt-update-upgrade="sudo apt-get update -y && sudo apt-get upgrade -y"
 
+## clang/g++ ##
+alias g++="g++ -std=c++11" #C++11 by default.
+alias clang="clang --std=c++11"
+
 ## Google Chrome ##
 alias chrome="chromium-browser";
 
@@ -55,12 +59,12 @@ saveman-txt()
 {
     man $1 $2 | col -b > $2$1"_linux.txt"
 }
-saveman-pdf() 
+saveman-pdf()
 {
 	#Redirect stderr 			Quiet and from stdin.
     man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $2$1"_linux.pdf"
 }
-saveman() 
+saveman()
 {
     saveman-txt $1 $2
     saveman-pdf $1 $2
@@ -68,7 +72,7 @@ saveman()
 
 ## Make a google search and opens the result on Chrome.
 google-search()
-{   
+{
     #Encode the all function arguments.
     URL=$(url-encode $@)
 
