@@ -21,7 +21,7 @@ alias apt-update-upgrade="sudo apt-get update -y && sudo apt-get upgrade -y"
 
 ## clang/g++ ##
 alias g++="g++ -std=c++11" #C++11 by default.
-alias clang="clang --std=c++11"
+alias clang="clang++ -std=c++11"
 
 ## Google Chrome ##
 alias chrome="chromium-browser";
