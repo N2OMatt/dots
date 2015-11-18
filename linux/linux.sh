@@ -15,6 +15,9 @@ alias cp="cp -v" #Make cp verbose.
 alias df="df -H" #Human readable.
 ## du
 alias du="du -ch" #Grand Total | Human readable.
+## Editors
+alias gedit="subl" #Make easy to copy scripts from net.
+
 
 ## apt stuff ##
 alias apt-update-upgrade="sudo apt-get update -y && sudo apt-get upgrade -y"
