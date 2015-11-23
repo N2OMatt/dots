@@ -73,6 +73,14 @@ saveman()
     saveman-pdf $1 $2
 }
 
+
+## apt ##
+
+apt-show()
+{
+    apt-cache show $1
+}
+
 ## Make a google search and opens the result on Chrome.
 google-search()
 {
