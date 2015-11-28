@@ -25,6 +25,9 @@ alias chrome="open -a \"Google Chrome\"";
 ## This is a must ##
 alias lock-screen='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 
+## URL ##
+alias url-encode="python -c 'import sys, urllib as ul; print ul.quote_plus(\" \".join(sys.argv[1:]))'"
+            
 
 ################################################################################
 ## Prompt                                                                     ##
@@ -55,8 +58,11 @@ saveman() {
 ## Make a google search and opens the result on Chrome.
 google-search()
 {
-    #COWTODO: We should encode the $1 - C++ -> C%2B%2B
-    chrome "https://www.google.com/search?q=$1";
+    #Encode the all function arguments.
+    URL=$(url-encode $@)
+
+    #Redirect the error output...
+    chrome "https://www.google.com/search?q=$URL" 2> /dev/null;
 }
 
 ## Get/Set the dock size.
