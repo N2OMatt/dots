@@ -76,3 +76,14 @@ set-dock-size()
     defaults write com.apple.dock tilesize -int $1
     killall Dock
 }
+
+
+files()
+{
+    PATH=$1
+    if [ -z "$PATH" ]; then
+        PATH=".";
+    fi;
+
+    /usr/bin/open -R "$PATH";
+}
