@@ -55,6 +55,13 @@ saveman() {
     saveman-pdf $1 $2
 }
 
+## Youtube-dl ##
+youtube-dl-auto()
+{
+    youtube-dl $1 && exit;
+}
+
+
 ## Make a google search and opens the result on Chrome.
 google-search()
 {
