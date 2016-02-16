@@ -49,7 +49,7 @@ print ul.quote_plus(\" \".join(sys.argv[1:]))"'
 #Makes my prompt be:
 #   Amanda:Directory:n2omatt $
 #Where Amanda is random colored - Without the black.
-PS1="\[$(tput setaf $(( 1 + RANDOM % 7)) )\]\h\[$(tput sgr 0)\]:\W \u\$ "
+PS1="[\[$(tput setaf $(( 1 + RANDOM % 7)) )\]\h\[$(tput sgr 0)\]:\W] \u\$ "
 
 
 ################################################################################
