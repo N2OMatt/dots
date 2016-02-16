@@ -87,10 +87,10 @@ set-dock-size()
 
 files()
 {
-    PATH=$1
-    if [ -z "$PATH" ]; then
-        PATH=".";
+    local TARGET_PATH=$1
+    if [ -z "$TARGET_PATH" ]; then
+        TARGET_PATH=".";
     fi;
 
-    /usr/bin/open -R "$PATH";
+    /usr/bin/open -R "$TARGET_PATH";
 }
