@@ -60,12 +60,24 @@ PS1="[\[$(tput setaf $(( 1 + RANDOM % 7)) )\]\h\[$(tput sgr 0)\]:\W] \u\$ "
 ## saveman [Section] [Page.]
 saveman-txt()
 {
-    man $1 $2 | col -b > $2$1"_linux.txt"
+    local DIR_TO_SAVE_MAN=".";
+
+    if [ -d "/home/n2omatt/Documents/Projects/N2OMatt/manpages" ]; then
+        DIR_TO_SAVE_MAN="/home/n2omatt/Documents/Projects/N2OMatt/manpages";
+    fi
+
+    man $1 $2 | col -b > $DIR_TO_SAVE_MAN"/"$2$1"_linux.txt"
 }
 saveman-pdf()
 {
+    local DIR_TO_SAVE_MAN=".";
+
+    if [ -d "/home/n2omatt/Documents/Projects/N2OMatt/manpages" ]; then
+        DIR_TO_SAVE_MAN="/home/n2omatt/Documents/Projects/N2OMatt/manpages";
+    fi
+
 	#Redirect stderr 			Quiet and from stdin.
-    man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $2$1"_linux.pdf"
+    man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $DIR_TO_SAVE_MAN"/"$2$1"_linux.txt"
 }
 saveman()
 {
