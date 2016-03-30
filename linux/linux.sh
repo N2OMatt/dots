@@ -72,6 +72,8 @@ n2o_private_dir_to_saveman()
 ## saveman [Section] [Page.]
 saveman-txt()
 {
+    #COWTODO: Add a verbose option and make the echo silent by default.
+
     local OUTPUT_FILENAME=$(n2o_private_dir_to_saveman)"/"$2$1"_linux.txt";
     man $1 $2 | col -b > $OUTPUT_FILENAME;
 
@@ -79,6 +81,8 @@ saveman-txt()
 }
 saveman-pdf()
 {
+    #COWTODO: Add a verbose option and make the echo silent by default.
+
     local OUTPUT_FILENAME=$(n2o_private_dir_to_saveman)"/"$2$1"_linux.pdf";
     #Redirect stderr            Quiet and from stdin.
     man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $OUTPUT_FILENAME;
