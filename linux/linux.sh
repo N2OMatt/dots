@@ -55,29 +55,35 @@ PS1="[\[$(tput setaf $(( 1 + RANDOM % 7)) )\]\h\[$(tput sgr 0)\]:\W] \u\$ "
 ################################################################################
 ## Functions                                                                  ##
 ################################################################################
+
+n2o_private_dir_to_saveman()
+{
+    local DIR_TO_SAVE_MAN=".";
+
+    if [ -d "/home/n2omatt/Documents/Projects/N2OMatt/manpages" ]; then
+        DIR_TO_SAVE_MAN="/home/n2omatt/Documents/Projects/N2OMatt/manpages";
+    fi
+
+    echo $DIR_TO_SAVE_MAN;
+}
+
 ## Saves a manual page to the current directory.
 ## Very same way of call man...
 ## saveman [Section] [Page.]
 saveman-txt()
 {
-    local DIR_TO_SAVE_MAN=".";
+    local OUTPUT_FILENAME=$(n2o_private_dir_to_saveman)"/"$2$1"_linux.txt";
+    man $1 $2 | col -b > $OUTPUT_FILENAME;
 
-    if [ -d "/home/n2omatt/Documents/Projects/N2OMatt/manpages" ]; then
-        DIR_TO_SAVE_MAN="/home/n2omatt/Documents/Projects/N2OMatt/manpages";
-    fi
-
-    man $1 $2 | col -b > $DIR_TO_SAVE_MAN"/"$2$1"_linux.txt"
+    echo $OUTPUT_FILENAME;
 }
 saveman-pdf()
 {
-    local DIR_TO_SAVE_MAN=".";
+    local OUTPUT_FILENAME=$(n2o_private_dir_to_saveman)"/"$2$1"_linux.pdf";
+    #Redirect stderr            Quiet and from stdin.
+    man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $OUTPUT_FILENAME;
 
-    if [ -d "/home/n2omatt/Documents/Projects/N2OMatt/manpages" ]; then
-        DIR_TO_SAVE_MAN="/home/n2omatt/Documents/Projects/N2OMatt/manpages";
-    fi
-
-	#Redirect stderr 			Quiet and from stdin.
-    man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $DIR_TO_SAVE_MAN"/"$2$1"_linux.txt"
+    echo $OUTPUT_FILENAME;
 }
 saveman()
 {
