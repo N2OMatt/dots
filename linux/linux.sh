@@ -73,21 +73,37 @@ n2o_private_dir_to_saveman()
 saveman-txt()
 {
     #COWTODO: Add a verbose option and make the echo silent by default.
+    local OUTPUT_FILENAME=$2$1"_linux.txt";
+    local OUTPUT_DIRNAME=$(n2o_private_dir_to_saveman);
 
-    local OUTPUT_FILENAME=$(n2o_private_dir_to_saveman)"/"$2$1"_linux.txt";
-    man $1 $2 | col -b > $OUTPUT_FILENAME;
+    local OUTPUT_FULLNAME=$OUTPUT_DIRNAME"/"$OUTPUT_FILENAME;
+    local RESULT=$(find $OUTPUT_DIRNAME -iname $OUTPUT_FILENAME);
 
-    echo $OUTPUT_FILENAME;
+    if [ -n "$RESULT" ]; then
+        echo "$OUTPUT_FILENAME already exists...";
+        return 0;
+    fi
+
+    man $1 $2 | col -b > $OUTPUT_FULLNAME;
+    echo "saved: " $OUTPUT_FULLNAME;
 }
 saveman-pdf()
 {
-    #COWTODO: Add a verbose option and make the echo silent by default.
+#COWTODO: Add a verbose option and make the echo silent by default.
+    local OUTPUT_FILENAME=$2$1"_linux.pdf";
+    local OUTPUT_DIRNAME=$(n2o_private_dir_to_saveman);
 
-    local OUTPUT_FILENAME=$(n2o_private_dir_to_saveman)"/"$2$1"_linux.pdf";
-    #Redirect stderr            Quiet and from stdin.
-    man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $OUTPUT_FILENAME;
+    local OUTPUT_FULLNAME=$OUTPUT_DIRNAME"/"$OUTPUT_FILENAME;
+    local RESULT=$(find $OUTPUT_DIRNAME -iname $OUTPUT_FILENAME);
 
-    echo $OUTPUT_FILENAME;
+    if [ -n "$RESULT" ]; then
+        echo "$OUTPUT_FILENAME already exists...";
+        return 0;
+    fi
+
+    # #Redirect stderr            Quiet and from stdin.
+    man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $OUTPUT_FULLNAME;
+    echo "saved: " $OUTPUT_FULLNAME;
 }
 saveman()
 {
