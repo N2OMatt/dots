@@ -1,5 +1,7 @@
 ## COWTODO: Put this stuff on the right place...
 
+bind -x '"\C-l":clear; $PROMPT_COMMAND';
+
 ################################################################################
 ## Aliases                                                                    ##
 ################################################################################
@@ -19,7 +21,8 @@ alias df="df -H" #Human readable.
 alias du="du -ch" #Grand Total | Human readable.
 ## Editors
 alias gedit="subl" #Make easy to copy scripts from net.
-
+alias emacs="emacs24 -nw" #Prefer the terminal version.
+alias emacs-gui="emacs24-x" 
 ## clang / g++ ##
 alias g++="g++ -std=c++11" #C++11 by default.
 alias clang="clang++ -std=c++11"
