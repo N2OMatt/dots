@@ -1,6 +1,8 @@
 ################################################################################
-## Prompt                                                                     ##
+## apt                                                                        ##
+## COWTODO: Add description                                                   ##
 ################################################################################
+
 #Makes my prompt be:
 #   Amanda:Directory n2omatt $
 #Where Amanda is random colored - Without the black.

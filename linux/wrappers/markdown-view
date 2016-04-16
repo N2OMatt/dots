@@ -1,8 +1,16 @@
+#!/bin/bash
 ################################################################################
 ## apt                                                                        ##
 ## COWTODO: Add description                                                   ##
 ################################################################################
 
-## Aliases ##
 
-alias grip="python /home/n2omatt/.local/lib/python2.7/site-packages/grip"
+## Markdown ##
+if [ -z $1 ]; then
+    echo "Usage:"
+    echo "  markdown-view <file>"
+    exit 1
+else
+    TEMP_NAME=$(mktemp)
+    markdown $1 > "${TEMP_NAME}_${1}".html &&  $N2OBROWSER "${TEMP_NAME}_${1}".html 2> /dev/null &
+fi;

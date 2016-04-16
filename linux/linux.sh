@@ -7,6 +7,9 @@ bind -x '"\C-l":clear; $PROMPT_COMMAND';
 ################################################################################
 ## clear
 alias cl="clear";
+## rm
+alias rm=safe-rm;
+
 ## ls
 alias ls="ls -Fh --color=auto" #Colorize | Classify | Human Sizes.
 alias la="ls -a  --color=auto" #Print hidden.
@@ -22,7 +25,7 @@ alias du="du -ch" #Grand Total | Human readable.
 ## Editors
 alias gedit="subl" #Make easy to copy scripts from net.
 alias emacs="emacs24 -nw" #Prefer the terminal version.
-alias emacs-gui="emacs24-x" 
+alias emacs-gui="emacs24-x"
 ## clang / g++ ##
 alias g++="g++ -std=c++11" #C++11 by default.
 alias clang="clang++ -std=c++11"

@@ -1,6 +1,18 @@
+################################################################################
+## apt                                                                        ##
+## COWTODO: Add description                                                   ##
+################################################################################
+
+## Alias ##
 alias chrome="chromium-browser";
 alias browser="chrome";
 
+
+## Exports ##
+export N2OBROWSER="chromium-browser";
+
+
+## Functions ##
 ## Make a google search and opens the result on browser.
 google-search()
 {

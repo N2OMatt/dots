@@ -1,5 +1,12 @@
-## This is a version of Gosh (using gosh actually) that lets us
-## change the directory (open new window) in the file manager.
+################################################################################
+## apt                                                                        ##
+## COWTODO: Add description                                                   ##
+################################################################################
+
+## Functions ##
+
+#This is a version of Gosh (using gosh actually) that lets us
+#change the directory (open new window) in the file manager.
 goshfiles()
 {
     RET=`gosh -p $1`

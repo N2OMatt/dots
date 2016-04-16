@@ -1,5 +1,13 @@
-## Open the Filesystem Manager into a given path...
-## If no path was given open the current dir.
+################################################################################
+## apt                                                                        ##
+## COWTODO: Add description                                                   ##
+################################################################################
+
+
+## Functions ##
+
+#Open the Filesystem Manager into a given path...
+#If no path was given open the current dir.
 files()
 {
     #This is needed because caja is located in the /usr/bin

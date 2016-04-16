@@ -1,6 +1,10 @@
 ################################################################################
-## Functions                                                                  ##
+## apt                                                                        ##
+## COWTODO: Add description                                                   ##
 ################################################################################
+
+## Functions ##
+
 n2o_private_dir_to_saveman()
 {
     local DIR_TO_SAVE_MAN=".";
@@ -12,9 +16,10 @@ n2o_private_dir_to_saveman()
     echo $DIR_TO_SAVE_MAN;
 }
 
-## Saves a manual page to the current directory.
-## Very same way of call man...
-## saveman [Section] [Page.]
+
+#Saves a manual page to the current directory.
+#Very same way of call man...
+#saveman [Section] [Page.]
 saveman-txt()
 {
     #COWTODO: Add a verbose option and make the echo silent by default.
@@ -32,6 +37,7 @@ saveman-txt()
     man $1 $2 | col -b > $OUTPUT_FULLNAME;
     echo "saved: " $OUTPUT_FULLNAME;
 }
+
 saveman-pdf()
 {
 #COWTODO: Add a verbose option and make the echo silent by default.
@@ -50,6 +56,7 @@ saveman-pdf()
     man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $OUTPUT_FULLNAME;
     echo "saved: " $OUTPUT_FULLNAME;
 }
+
 saveman()
 {
     saveman-txt $1 $2
