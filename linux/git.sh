@@ -16,6 +16,7 @@ alias gitcheck="python ~/.local/lib/python2.7/site-packages/gitcheck/gitcheck.py
 
 #Less typing FTW.
 alias ggui="git gui";
+alias gtag="git tag";
 alias gstatus="git status -s";
 alias glog="git log";
 alias gadd="git add";
