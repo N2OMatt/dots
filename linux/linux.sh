@@ -40,6 +40,9 @@ alias lock-screen='gnome-screensaver-command --lock'
 alias url-encode='python -c "import sys, urllib as ul; \
 print ul.quote_plus(\" \".join(sys.argv[1:]))"'
 
+alias abs-path='python -c "import os.path; \
+                           import sys; \
+                           print os.path.abspath(os.path.expanduser(sys.argv[1]))"'
 
 source "$(realpath ~/.linux_dots/apt.sh)"
 source "$(realpath ~/.linux_dots/browser.sh)"
