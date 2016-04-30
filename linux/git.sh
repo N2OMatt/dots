@@ -23,4 +23,5 @@ alias gadd="git add";
 alias gcommit="git commit";
 alias gpush="git push --tags";
 alias gpull="git pull";
-
+alias gsub-uir="git submodule update --init --recursive"
+alias gsub-add="git submodule add";
