@@ -1,7 +1,7 @@
 ################################################################################
 ## Exports                                                                    ##
 ################################################################################
-export AMAZING_COW_PROJECTS_DIRECTORY="/home/n2omatt/Documents/Projects/AmazingCow";
+export AMAZING_COW_PROJECTS_DIRECTORY="/home/$USER/Documents/Projects/AmazingCow";
 
 connect_amazingcow_dot_com()
 {
