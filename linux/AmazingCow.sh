@@ -5,7 +5,7 @@ export AMAZING_COW_PROJECTS_DIRECTORY="/home/$USER/Documents/Projects/AmazingCow
 
 
 IS_HOSTGATOR=$(uname -n | grep "hostgator")
-if [ -n "$IS_HOSTGATOR"]; then
+if [ -n "$IS_HOSTGATOR" ]; then
     export AMAZINGCOW_ENV_DOXYGEN="/home/amazi671/bin/doxygen"
     export AMAZINGCOW_ENV_MARKDOWN="/home/amazi671/bin/markdown"
 else
