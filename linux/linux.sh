@@ -44,6 +44,14 @@ alias abs-path='python -c "import os.path; \
                            import sys; \
                            print os.path.abspath(os.path.expanduser(sys.argv[1]))"'
 
+
+
+## In cases that realpath is minssing...
+if [ -n "$(whereis realpth | cut -d":" -f2 | cut -d" " -f2)" ]; then
+    alias realpath="readlink -f"
+fi;
+
+
 source "$(realpath ~/.linux_dots/apt.sh)"
 source "$(realpath ~/.linux_dots/browser.sh)"
 source "$(realpath ~/.linux_dots/files.sh)"
