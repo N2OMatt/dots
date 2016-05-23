@@ -8,7 +8,7 @@ bind -x '"\C-l":clear; $PROMPT_COMMAND';
 ## clear
 alias cl="clear";
 ## rm
-if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
+if [ -n "$(whereis safe-rm | cut -d":" -f2 | cut -d" " -f2)" ]; then
     alias rm="safe-rm";
 fi;
 
