@@ -8,7 +8,10 @@ bind -x '"\C-l":clear; $PROMPT_COMMAND';
 ## clear
 alias cl="clear";
 ## rm
-alias rm=safe-rm;
+if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
+    alias rm="safe-rm";
+fi;
+
 
 ## ls
 alias ls="ls -Fh --color=auto" #Colorize | Classify | Human Sizes.
@@ -47,7 +50,7 @@ alias abs-path='python -c "import os.path; \
 
 
 ## In cases that realpath is minssing...
-if [ -n "$(whereis realpth | cut -d":" -f2 | cut -d" " -f2)" ]; then
+if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
     alias realpath="readlink -f"
 fi;
 
