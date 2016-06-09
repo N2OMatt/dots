@@ -2,6 +2,9 @@
 
 bind -x '"\C-l":clear; $PROMPT_COMMAND';
 
+## COWTODO: This is probably a not reliable way to do this..
+alias keep="chromium-browser --ppapi-flash-path=/usr/lib/pepperflashplugin-nonfree/libpepflashplayer.so --ppapi-flash-version=21.0.0.216 --enable-pinch --profile-directory=Default --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki 2>&1 1> /dev/null "
+
 ################################################################################
 ## Aliases                                                                    ##
 ################################################################################
