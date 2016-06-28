@@ -52,7 +52,7 @@ alias abs-path='python -c "import os.path; \
 
 
 
-## In cases that realpath is minssing...
+## In cases that realpath is missing.
 if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
     alias realpath="readlink -f"
 fi;
