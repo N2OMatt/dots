@@ -11,9 +11,6 @@
 ################################################################################
 ## Aliases                                                                    ##
 ################################################################################
-#Make gitcheck available easily.
-alias gitcheck="python ~/.local/lib/python2.7/site-packages/gitcheck/gitcheck.py"
-
 #Less typing FTW.
 alias ggui="git gui";
 alias gtag="git tag";
