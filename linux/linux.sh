@@ -58,8 +58,11 @@ if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
 fi;
 
 
+source "$(realpath ~/.linux_dots/AmazingCow.sh)"
 source "$(realpath ~/.linux_dots/apt.sh)"
 source "$(realpath ~/.linux_dots/browser.sh)"
+source "$(realpath ~/.linux_dots/cocos.sh)"
+source "$(realpath ~/.linux_dots/connections.sh)"
 source "$(realpath ~/.linux_dots/files.sh)"
 source "$(realpath ~/.linux_dots/git.sh)"
 source "$(realpath ~/.linux_dots/gosh.sh)"
@@ -67,5 +70,3 @@ source "$(realpath ~/.linux_dots/manual.sh)"
 source "$(realpath ~/.linux_dots/markdown.sh)"
 source "$(realpath ~/.linux_dots/ps1.sh)"
 source "$(realpath ~/.linux_dots/youtube-dl.sh)"
-source "$(realpath ~/.linux_dots/AmazingCow.sh)"
-source "$(realpath ~/.linux_dots/connections.sh)"
