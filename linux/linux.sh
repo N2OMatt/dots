@@ -58,6 +58,12 @@ if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
 fi;
 
 
+## Make the bash completion works.
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+
 source "$(realpath ~/.linux_dots/AmazingCow.sh)"
 source "$(realpath ~/.linux_dots/apt.sh)"
 source "$(realpath ~/.linux_dots/browser.sh)"
