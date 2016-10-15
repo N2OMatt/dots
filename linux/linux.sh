@@ -1,6 +1,8 @@
 ## COWTODO: Put this stuff on the right place...
 
-bind -x '"\C-l":clear; $PROMPT_COMMAND';
+if [ -n "$TERM" ]; then
+    bind -x '"\C-l":clear; $PROMPT_COMMAND' > /dev/null 2>&1;
+fi;
 
 ## COWTODO: This is probably a not reliable way to do this..
 alias keep="chromium-browser --ppapi-flash-path=/usr/lib/pepperflashplugin-nonfree/libpepflashplayer.so --ppapi-flash-version=21.0.0.216 --enable-pinch --profile-directory=Default --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki 2>&1 1> /dev/null "
