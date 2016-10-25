@@ -65,6 +65,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+## Python Scrap ##
+py-scrap()
+{
+    subl $(mktemp)".py";
+}
+
 
 source "$(realpath ~/.linux_dots/AmazingCow.sh)"
 source "$(realpath ~/.linux_dots/apt.sh)"
