@@ -71,6 +71,8 @@ py-scrap()
     subl $(mktemp)".py";
 }
 
+##
+alias get-sum="paste -sd+ - | bc"
 
 source "$(realpath ~/.linux_dots/AmazingCow.sh)"
 source "$(realpath ~/.linux_dots/apt.sh)"
