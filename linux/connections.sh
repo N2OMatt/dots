@@ -3,7 +3,7 @@
 ################################################################################
 connect_amazingcow_dot_com()
 {
-    ssh -p2222 amazi671@amazingcow.com
+    ssh amazingcow@107.180.47.65
 }
 
 connect_helena()
