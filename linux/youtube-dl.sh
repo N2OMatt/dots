@@ -4,6 +4,16 @@
 ################################################################################
 
 ## Functions ##
+youtube-dl-continue()
+{
+    while true; do
+        youtube-dl $1
+        if [[ $? == 0 ]]; then
+            exit;
+        fi
+    done
+
+}
 
 youtube-dl-auto()
 {
