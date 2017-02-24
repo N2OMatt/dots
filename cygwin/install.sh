@@ -50,7 +50,7 @@ add_to_main() {
 
     for FILENAME in $FILES; do
         echo "Adding to main.sh: ($FILENAME)";
-        echo "source" '"''$HOME/'"$DOTS_DIR/$FILENAME"'"' >> "$OUTPUT_DIR/main.sh";
+        echo "source" "$DOTS_DIR/$FILENAME" >> "$OUTPUT_DIR/main.sh";
     done;
 }
 
