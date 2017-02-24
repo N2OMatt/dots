@@ -25,7 +25,9 @@ fi;
 
 ## Create dots dir and copy all files to it.
 mkdir -p "$DOTS_DIR";
-cp -rf ./$CURR_OS/* "$DOTS_DIR";
+./${CURR_OS}/install.sh base ${CURR_OS} output "$DOTS_DIR";
+cp -rf ./output/* "$DOTS_DIR";
+rm -rf output;
 
 
 ## Search on .bashrc if we already have an entry for dots
