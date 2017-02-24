@@ -18,6 +18,11 @@ files()
 {
     #Initialize the destination path to the current dir.
     local path=".";
+    local files_mgr=$(whereis explorer.exe | cut -d":" -f2);
+
+    if [ z- "$files_mgr" ]; then
+        echo "Error - Cannot find files_mgr at: ($files_mgr)";
+    fi;
 
     #Check if the input is comming from a pipe (stdin) or
     #from the arguments...
@@ -31,5 +36,5 @@ files()
     fi;
 
     #Don't write the error messages into the terminal.
-    /cygdrive/c/Windows/explorer.exe 2> /dev/null $path
+    $files_mgr 2> /dev/null $path
 }
