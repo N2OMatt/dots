@@ -13,14 +13,17 @@ create-cocos-project()
     GAME_NAME="$1"
     GAME_NAME_LOWER=$(echo $1 | tr '[:upper:]' '[:lower:]');
 
-    PRORTRAIT=$2
+    PORTRAIT=$2
+    #Portrait by default.
+    if [ -z "$PORTRAIT" ]; then
+        PORTRAIT="portrait";
+    fi;
 
     cocos new -p "com.amazingcow.$GAME_NAME_LOWER"           \
         -d .                                                 \
         --ios-bundleid "com.amazingcow.$GAME_NAME_LOWER.ios" \
         --mac-bundleid "com.amazingcow.$GAME_NAME_LOWER.mac" \
         -l cpp                                               \
-        $PRORTRAIT                                           \
+        $PORTRAIT                                            \
         $GAME_NAME
-
 }
