@@ -12,6 +12,7 @@ BASE_FILES="AmazingCow.sh                \
             development.sh               \
             git.sh                       \
             hacks.sh                     \
+            youtube-dl.sh                \
             ps1.sh";
 
 LOCAL_FILES="apt.sh         \
