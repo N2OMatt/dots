@@ -23,5 +23,12 @@ alias gpull="git pull";
 alias gsub-uir="git submodule update --init --recursive"
 alias gsub-add="git submodule add";
 
-alias gurl="git remote -v | head -1 | expand -t1 | cut -d\" \" -f2";
-alias gurl-browser="browser $(gurl)"
+gurl()
+{
+    git remote -v | head -1 | expand -t1 | cut -d" " -f2;
+}
+
+gurl-browser()
+{
+    browser $(gurl)
+}
