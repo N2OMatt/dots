@@ -28,6 +28,9 @@ LOCAL_FILES="apt.sh         \
 ## Script                                                                     ##
 ################################################################################
 echo "----> Calling dots install_helper.sh";
+echo "------> OS       : $OS";
+echo "------> DOTS_DIR : $DOTS_DIR";
+
 ./install_helper.sh             \
     --basedir    "./base"       \
     --localdir   "$OS"          \
