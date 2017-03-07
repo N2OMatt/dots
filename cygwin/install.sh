@@ -3,10 +3,8 @@
 ################################################################################
 ## Variables                                                                  ##
 ################################################################################
-BASE_DIR="$1";
-LOCAL_DIR="$2";
-OUTPUT_DIR="$3";
-DOTS_DIR="$4";
+OS=$1;
+DOTS_DIR=$2
 
 
 BASE_FILES="AmazingCow.sh                \
@@ -24,6 +22,9 @@ LOCAL_FILES="files.sh";
 ## Script                                                                     ##
 ################################################################################
 echo "----> Calling dots install_helper.sh";
+echo "------> OS       : $OS";
+echo "------> DOTS_DIR : $DOTS_DIR";
+
 ./install_helper.sh             \
     --basedir    "./base"       \
     --localdir   "$OS"          \
