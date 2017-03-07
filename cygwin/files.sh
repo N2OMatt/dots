@@ -20,8 +20,9 @@ files()
     local path=".";
     local files_mgr=$(whereis explorer.exe | cut -d":" -f2);
 
-    if [ z- "$files_mgr" ]; then
+    if [ -z "$files_mgr" ]; then
         echo "Error - Cannot find files_mgr at: ($files_mgr)";
+        return
     fi;
 
     #Check if the input is comming from a pipe (stdin) or
