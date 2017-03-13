@@ -1,5 +1,5 @@
 ################################################################################
-## File    : apt.sh                                                           ##
+## File    : cocos.sh                                                         ##
 ## Project : dots                                                             ##
 ## License : GPLv3                                                            ##
 ## Author  : n2omatt@amazingcow.com                                           ##

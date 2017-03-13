@@ -1,5 +1,5 @@
 ################################################################################
-## File    : browser.sh                                                       ##
+## File    : files.sh                                                         ##
 ## Project : dots                                                             ##
 ## License : GPLv3                                                            ##
 ## Author  : n2omatt@amazingcow.com                                           ##

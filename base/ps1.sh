@@ -1,6 +1,11 @@
 ################################################################################
-## apt                                                                        ##
-## COWTODO: Add description                                                   ##
+## File    : ps1.sh                                                           ##
+## Project : dots                                                             ##
+## License : GPLv3                                                            ##
+## Author  : n2omatt@amazingcow.com                                           ##
+##                                                                            ##
+## Description:                                                               ##
+## Makes the prompt more nicer.                                               ##
 ################################################################################
 
 #Makes my prompt be:

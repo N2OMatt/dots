@@ -1,10 +1,16 @@
 ################################################################################
-## apt                                                                        ##
-## COWTODO: Add description                                                   ##
+## File    : manual.sh                                                        ##
+## Project : dots                                                             ##
+## License : GPLv3                                                            ##
+## Author  : n2omatt@amazingcow.com                                           ##
+##                                                                            ##
+## Description:                                                               ##
+## Functions to save/export manual pages in text and pdf formats.             ##
 ################################################################################
 
-## Functions ##
-
+################################################################################
+## Private Functions                                                          ##
+################################################################################
 n2o_private_dir_to_saveman()
 {
     local DIR_TO_SAVE_MAN=".";
@@ -17,6 +23,9 @@ n2o_private_dir_to_saveman()
 }
 
 
+################################################################################
+## Public Functions                                                           ##
+################################################################################
 #Saves a manual page to the current directory.
 #Very same way of call man...
 #saveman [Section] [Page.]

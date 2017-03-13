@@ -1,10 +1,16 @@
 ################################################################################
-## apt                                                                        ##
-## COWTODO: Add description                                                   ##
+## File    : gosh.sh                                                          ##
+## Project : dots                                                             ##
+## License : GPLv3                                                            ##
+## Author  : n2omatt@amazingcow.com                                           ##
+##                                                                            ##
+## Description:                                                               ##
+## Stuff to enhance gosh.                                                     ##
 ################################################################################
 
-## Functions ##
-
+################################################################################
+## Functions                                                                  ##
+################################################################################
 #This is a version of Gosh (using gosh actually) that lets us
 #change the directory (open new window) in the file manager.
 goshfiles()
@@ -18,6 +24,9 @@ goshfiles()
 }
 
 
+################################################################################
+## Hacks                                                                      ##
+################################################################################
 ## Litte hack that enables the bash completes the stuff for goshf too.
 ## COWTODO: There is another better way to do this???
 BASH_COMPLETION_DIR=$(pkg-config --variable=completionsdir bash-completion);

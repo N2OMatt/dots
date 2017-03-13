@@ -1,10 +1,16 @@
+################################################################################
+## File    : hacks.sh                                                         ##
+## Project : dots                                                             ##
+## License : GPLv3                                                            ##
+## Author  : n2omatt@amazingcow.com                                           ##
+##                                                                            ##
+## Description:                                                               ##
+## Stuff that I don't know where to place.                                    ##
+################################################################################
 
-## COWTODO: Put this stuff on the right place...
-if [ -n "$TERM" ]; then
-    bind -x '"\C-l":clear; $PROMPT_COMMAND' > /dev/null 2>&1;
-fi;
-
-## URL ##
+################################################################################
+## URL                                                                        ##
+################################################################################
 alias url-encode='python -c "import sys, urllib as ul; \
     print ul.quote_plus(\" \".join(sys.argv[1:]))"'
 
@@ -13,12 +19,18 @@ alias abs-path='python -c "import os.path; \
                            print os.path.abspath(os.path.expanduser(sys.argv[1]))"'
 
 
-## Python Scrap ##
+################################################################################
+## Python Scrap                                                               ##
+################################################################################
 py-scrap()
 {
     subl $(mktemp)".py";
 }
 
+
+################################################################################
+## Other                                                                      ##
+################################################################################
 
 ## In cases that realpath is missing.
 if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
