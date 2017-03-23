@@ -25,7 +25,9 @@ BASE_FILES="AmazingCow.sh                \
             hacks.sh                     \
             ps1.sh";
 
-LOCAL_FILES="files.sh";
+LOCAL_FILES="files.sh \
+             TBS.sh   \
+             cygwin_hacks.sh";
 
 
 ################################################################################
