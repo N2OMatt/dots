@@ -12,7 +12,7 @@
 ################################################################################
 ## Functions                                                                  ##
 ################################################################################
-build-tbs-win()
+tbs-build-win()
 {
     IS_IN_SAGA_DIR=$(echo $PWD | grep "saga.-desktop/build");
     if [ -z "$IS_IN_SAGA_DIR" ]; then
@@ -31,4 +31,18 @@ build-tbs-win()
     echo "Building $SAGA_SKU"
 
     ant -f  build-$SAGA_SKU.xml local info game-win-$SAGA_SKU
+}
+
+tbs-hg-pull()
+{
+    IS_IN_SAGA_DIR=$(echo $PWD | grep "saga.-desktop");
+    if [ -z "$IS_IN_SAGA_DIR" ]; then
+        echo "Not in Saga build dir. Aborting build.";
+        return 1;
+    fi;
+
+    HG_BRANCH=$(hg branch);
+    SAGA_SKU=$(echo "$HG_BRANCH" | sed s/-firehorse/""/g);
+
+    hg pull --branch $SAGA_SKU;
 }
