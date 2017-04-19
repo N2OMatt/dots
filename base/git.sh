@@ -47,3 +47,40 @@ gurl-browser()
 {
     browser $(gurl)
 }
+
+
+git-delete-all-branches-but-master()
+{
+    local curr_branch=$(gbranch-curr);
+    local force="$1";
+
+    ## Check if we are on master.
+    ##   Only delete other branches if we're on master.
+    if [ "$curr_branch" != "master" ]; then
+        echo "[FATAL] Not on master branch. - Currently on [$curr_branch]";
+        return 1;
+    fi;
+
+    ## Delete all branches
+    for curr_branch in $(git branch | cut -c 3-); do
+        ## Skip master branch (and empty lines)
+        if [ "$curr_branch" == "master" ]; then
+            continue;
+        fi;
+
+        ## User specified --force or -f flags
+        ##   This means that we don't need ask anything...
+        if [ "$force" != "--force" ] && [ "$force" != "-f" ]; then
+
+            echo -n "Delete branch [$curr_branch]: [Y/n]";
+            read YES;
+
+            if [ "$YES" == "n" ] || [ "$YES" == "N" ]; then
+                echo "  Skipping branch [$curr_branch]";
+                continue;
+            fi;
+        fi;
+
+        git branch -d "$curr_branch"
+    done;
+}
