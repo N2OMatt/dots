@@ -32,7 +32,7 @@ alias gauthors-top="git shortlog -s -n"
 
 alias gbranch="git branch";
 alias gbranch-curr="git rev-parse --abbrev-ref HEAD";
-
+alias gbranch-create="git checkout -b";
 
 
 ################################################################################
@@ -81,6 +81,6 @@ git-delete-all-branches-but-master()
             fi;
         fi;
 
-        git branch -d "$curr_branch"
+        git branch -D "$curr_branch"
     done;
 }
