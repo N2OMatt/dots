@@ -44,3 +44,10 @@ echo "------> DOTS_DIR : $DOTS_DIR";
     --dotsdir    "$DOTS_DIR"    \
     --basefiles  "$BASE_FILES"  \
     --localfiles "$LOCAL_FILES"
+
+
+echo "----> Configuring git...";
+git config --global core.preloadindex       true;
+git config --global core.fscache            true;
+git config --global gc.auto                 256;
+git config --global status.submoduleSummary false;
