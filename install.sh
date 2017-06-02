@@ -13,7 +13,12 @@
 ################################################################################
 ## Variables                                                                  ##
 ################################################################################
-CURR_OS=$(uname -o | tr "[:upper:]" "[:lower:]" | tr  "/" "_");
+case $(uname -a | tr "[:upper:]" "[:lower:]") in
+    *darwin* ) CURR_OS="darwin";    ;;
+    *cygwin* ) CURR_OS="cygwin";    ;;
+    *linux*  ) CURR_OS="gnu_linux"; ;;
+esac
+
 BASHRC="$HOME/.bashrc";
 DOTS_DIR="$HOME/.${CURR_OS}_dots"
 BASHRC_ENTRY_FILENAME="$DOTS_DIR/main.sh"
