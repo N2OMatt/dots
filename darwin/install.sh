@@ -68,8 +68,8 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 ## Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 ## Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain KeyRepeat -int 7
+defaults write NSGlobalDomain InitialKeyRepeat -int 25
 ## Set Desktop as the default location for new Finder windows
 ## For other paths, use `PfLo` and `file:///full/path/here/`
 defaults write com.apple.finder NewWindowTarget -string "PfDe"
