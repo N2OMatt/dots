@@ -22,11 +22,11 @@ BASE_FILES="AmazingCow.sh                \
             development.sh               \
             git.sh                       \
             hacks.sh                     \
+            TBS.sh                       \
             ps1.sh";
 
 LOCAL_FILES="files.sh    \
-             coreutils.sh \
-             TBS.sh";
+             coreutils.sh";
 
 
 ################################################################################
