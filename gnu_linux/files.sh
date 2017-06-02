@@ -16,10 +16,6 @@
 #If no path was given open the current dir.
 files()
 {
-    #This is needed because caja is located in the /usr/bin
-    #And it could be not placed in the PATH env var.
-    local caja=$(which caja);
-
     #Initialize the destination path to the current dir.
     local path=".";
 
@@ -39,5 +35,5 @@ files()
     #COWTODO: We don't check for path validity.
 
     #Don't write the error messages into the terminal.
-    $caja 2> /dev/null $path
+    xdg-open > /dev/null 2>&1   "$path"
 }
