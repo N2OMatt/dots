@@ -12,8 +12,15 @@
 ################################################################################
 ## Functions                                                                  ##
 ################################################################################
-tbs-build-win()
+tbs-build()
 {
+    CURR_OS="";
+    case $(uname -a | tr "[:upper:]" "[:lower:]") in
+        *darwin* ) CURR_OS="mac";   ;;
+        *cygwin* ) CURR_OS="win";   ;;
+        *linux*  ) CURR_OS="linux"; ;; ## We actually don't use linux (yet...)
+    esac
+
     IS_IN_SAGA_DIR=$(echo $PWD | grep "saga.-desktop/build");
     if [ -z "$IS_IN_SAGA_DIR" ]; then
         echo "Not in Saga build dir. Aborting build.";
@@ -28,9 +35,10 @@ tbs-build-win()
     fi;
 
     SAGA_SKU=$(echo "$HG_BRANCH" | sed s/-firehorse/""/g);
-    echo "Building $SAGA_SKU"
+    echo "Building $SAGA_SKU - For OS $CURR_OS";
+    echo "   command: ant -f build-$SAGA_SKU.xml local info game-$CURR_OS-$SAGA_SKU";
 
-    ant -f  build-$SAGA_SKU.xml local info game-win-$SAGA_SKU
+    ant -f build-$SAGA_SKU.xml local info game-$CURR_OS-$SAGA_SKU
 }
 
 tbs-hg-pull()

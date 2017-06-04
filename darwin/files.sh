@@ -30,10 +30,6 @@ files()
         read path;
     fi;
 
-
-    #COWTODO: We don't handle the quoted text today.
-    #COWTODO: We don't check for path validity.
-
     #Don't write the error messages into the terminal.
-    xdg-open > /dev/null 2>&1   "$path"
+    open 2> /dev/null $path
 }
