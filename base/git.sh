@@ -84,3 +84,16 @@ git-delete-all-branches-but-master()
         git branch -D "$curr_branch"
     done;
 }
+
+gsub-remove()
+{
+    local SUBNAME="$1";
+
+    if [ -z "$SUBNAME" ]; then
+        echo "[FATAL] Missing submodule name...";
+        return -1;
+    fi;
+
+    git rm -f "$SUBNAME";
+    rm -rf .git/modules/"$SUBNAME"
+}
