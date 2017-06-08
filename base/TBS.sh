@@ -30,7 +30,7 @@ tbs-build()
     HG_BRANCH=$(hg branch);
     IS_ON_FH_BRANCH=$(echo $HG_BRANCH | grep "firehorse");
     if [ -z "$IS_ON_FH_BRANCH" ]; then
-        echo "Not in Firehorse branch. Aborting build.";
+        echo "Not in Firehorse branch ($HG_BRANCH). Aborting build.";
         return 1;
     fi;
 
