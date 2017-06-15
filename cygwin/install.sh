@@ -24,6 +24,7 @@ BASE_FILES="AmazingCow.sh                \
             git.sh                       \
             hacks.sh                     \
             TBS.sh                       \
+            youtube-dl.sh                \
             ps1.sh";
 
 LOCAL_FILES="files.sh \
