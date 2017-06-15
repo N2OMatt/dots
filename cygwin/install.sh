@@ -27,8 +27,9 @@ BASE_FILES="AmazingCow.sh                \
             youtube-dl.sh                \
             ps1.sh";
 
-LOCAL_FILES="files.sh \
-             cygwin_hacks.sh";
+LOCAL_FILES="files.sh           \
+             cygwin_hacks.sh    \
+             firehorse_hacks.sh";
 
 
 ################################################################################
