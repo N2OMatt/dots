@@ -8,4 +8,8 @@
 ## Stuff that I don't know where to place.                                    ##
 ################################################################################
 
-alias subl="/cygdrive/c/Program\ Files/Sublime\ Text\ 3/subl.exe"
+subl()
+{
+    SUBL=/cygdrive/c/Program\ Files/Sublime\ Text\ 3/subl.exe;
+    "$SUBL" $(cygpath -w $@);
+}
