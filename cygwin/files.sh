@@ -37,5 +37,5 @@ files()
     fi;
 
     #Don't write the error messages into the terminal.
-    $files_mgr 2> /dev/null $path
+    $files_mgr 2> /dev/null $(cygpath -w $path);
 }
