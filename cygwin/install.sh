@@ -29,6 +29,7 @@ BASE_FILES="AmazingCow.sh                \
 
 LOCAL_FILES="files.sh           \
              cygwin_hacks.sh    \
+             cygpath_helpers.sh \
              firehorse_hacks.sh";
 
 
