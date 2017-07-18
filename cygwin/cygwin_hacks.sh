@@ -11,5 +11,5 @@
 subl()
 {
     SUBL=/cygdrive/c/Program\ Files/Sublime\ Text\ 3/subl.exe;
-    "$SUBL" $(cygpath -w $@);
+    "$SUBL" "$(nt_path "$@")";
 }

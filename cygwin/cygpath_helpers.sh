@@ -11,10 +11,10 @@
 
 nt_path()
 {
-    echo \"$(cygpath --absolute --mixed "$@")\";
+    echo $(cygpath --absolute --mixed "$@");
 }
 
 unix_path()
 {
-    echo \"$(cygpath --absolute --unix "$@")\";
+    echo $(cygpath --absolute --unix "$@");
 }
