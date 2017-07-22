@@ -54,3 +54,14 @@ git config --global core.preloadindex       true;
 git config --global core.fscache            true;
 git config --global gc.auto                 256;
 git config --global status.submoduleSummary false;
+
+## COWNOTE(n2omatt): This is due cygwin don't provide 
+##    sudo command, and we want that GNU/Linux scripts
+##    that require it works without modification.
+## 
+##  Notice that isn't a real things, we're just 
+##  forwarding the arguments...
+echo "----> Installing (fake) sudo...";
+echo "#!/usr/bin/bash "  > /usr/bin/sudo
+echo '"$@"'             >> /usr/bin/sudo
+chmod 755 /usr/bin/sudo
