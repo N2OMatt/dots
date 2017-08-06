@@ -71,3 +71,16 @@ saveman()
     saveman-txt $1 $2
     saveman-pdf $1 $2
 }
+
+openman()
+{
+    local SEARCH_DIR=$(n2o_private_dir_to_saveman);
+    local OUTPUT_FILENAME=$2$1"_linux.pdf";
+
+    local FULLPATH=$(find $SEARCH_DIR -iname "$OUTPUT_FILENAME");
+    if [ -z "$FULLPATH" ]; then
+        saveman $1 $2;
+    fi;
+
+    xdg-open $FULLPATH &
+}
