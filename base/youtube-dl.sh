@@ -11,23 +11,33 @@
 ################################################################################
 ## Functions                                                                  ##
 ################################################################################
-youtube-dl-continue()
-{
-    while true; do
-        youtube-dl $1
-        if [[ $? == 0 ]]; then
-            exit;
-        fi
-    done
-
-}
-
 youtube-dl-auto()
 {
-    youtube-dl $1 && exit;
-}
+    local mp3="false";
+    local retry="false";
 
-youtube-dl-mp3()
-{
-    youtube-dl $1 --extract-audio --audio-format mp3 && exit
+    while [ $# -gt 0 ]; do
+        case $1 in
+            -m | --mp3   ) mp3="true";    ;;
+            -r | --retry ) retry="true";  ;;
+                       * ) url=$1;        ;;
+        esac;
+        shift;
+    done;
+
+    local flags="";
+    if [ "$mp3" == "true" ]; then
+        flags="--extract-audio --audio-format mp3";
+    fi;
+
+    echo "MP3  : $mp3";
+    echo "Retry: $retry";
+    echo "URL  : $url";
+
+    while true; do
+        youtube-dl $flags "$url";
+        if [ $? == 0 ] || [ $retry == "false" ]; then
+            exit;
+        fi;
+    done;
 }
