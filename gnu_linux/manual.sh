@@ -80,7 +80,9 @@ openman()
     local FULLPATH=$(find $SEARCH_DIR -iname "$OUTPUT_FILENAME");
     if [ -z "$FULLPATH" ]; then
         saveman $1 $2;
+        FULLPATH=$(find $SEARCH_DIR -iname "$OUTPUT_FILENAME");
     fi;
 
-    xdg-open $FULLPATH &
+    echo "Manual found: $FULLPATH";
+    xdg-open "$FULLPATH" > /dev/null 2>&1 &
 }
