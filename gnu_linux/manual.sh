@@ -8,81 +8,81 @@
 ## Functions to save/export manual pages in text and pdf formats.             ##
 ################################################################################
 
-################################################################################
-## Private Functions                                                          ##
-################################################################################
-n2o_private_dir_to_saveman()
-{
-    local DIR_TO_SAVE_MAN=".";
-
-    if [ -d "/home/n2omatt/Documents/Projects/N2OMatt/manpages" ]; then
-        DIR_TO_SAVE_MAN="/home/n2omatt/Documents/Projects/N2OMatt/manpages";
-    fi
-
-    echo $DIR_TO_SAVE_MAN;
-}
-
-
-################################################################################
-## Public Functions                                                           ##
-################################################################################
-#Saves a manual page to the current directory.
-#Very same way of call man...
-#saveman [Section] [Page.]
-saveman-txt()
-{
-    #COWTODO: Add a verbose option and make the echo silent by default.
-    local OUTPUT_FILENAME=$2$1"_linux.txt";
-    local OUTPUT_DIRNAME=$(n2o_private_dir_to_saveman);
-
-    local OUTPUT_FULLNAME=$OUTPUT_DIRNAME"/"$OUTPUT_FILENAME;
-    local RESULT=$(find $OUTPUT_DIRNAME -iname $OUTPUT_FILENAME);
-
-    if [ -n "$RESULT" ]; then
-        echo "$OUTPUT_FILENAME already exists...";
-        return 0;
-    fi
-
-    man $1 $2 | col -b > $OUTPUT_FULLNAME;
-    echo "saved: " $OUTPUT_FULLNAME;
-}
-
-saveman-pdf()
-{
-#COWTODO: Add a verbose option and make the echo silent by default.
-    local OUTPUT_FILENAME=$2$1"_linux.pdf";
-    local OUTPUT_DIRNAME=$(n2o_private_dir_to_saveman);
-
-    local OUTPUT_FULLNAME=$OUTPUT_DIRNAME"/"$OUTPUT_FILENAME;
-    local RESULT=$(find $OUTPUT_DIRNAME -iname $OUTPUT_FILENAME);
-
-    if [ -n "$RESULT" ]; then
-        echo "$OUTPUT_FILENAME already exists...";
-        return 0;
-    fi
-
-    # #Redirect stderr            Quiet and from stdin.
-    man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $OUTPUT_FULLNAME;
-    echo "saved: " $OUTPUT_FULLNAME;
-}
-
-saveman()
-{
-    saveman-txt $1 $2
-    saveman-pdf $1 $2
-}
-
 openman()
 {
-    local SEARCH_DIR=$(n2o_private_dir_to_saveman);
-    local OUTPUT_FILENAME=$2$1"_linux.pdf";
+    ## Assume that we're passing the full format.
+    local SECTION=$1;
+    local PAGE=$2;
 
-    local FULLPATH=$(find $SEARCH_DIR -iname "$OUTPUT_FILENAME");
-    if [ -z "$FULLPATH" ]; then
-        saveman $1 $2;
-        FULLPATH=$(find $SEARCH_DIR -iname "$OUTPUT_FILENAME");
+    ## Since we can pass only the page we need
+    ## adjust the vars here.
+    if [ -z "$PAGE" ]; then
+        PAGE=$SECTION;
+        SECTION="";
     fi;
 
-    echo "Manual found: $FULLPATH";
-    xdg-open "$FULLPATH" > /dev/null 2>&1 &
+    ## Find the path of manual
+    local MAN_PATH=$(man -w $SECTION $PAGE);
+
+    ## Check if we have a valid manual.
+    if [ -z "$MAN_PATH" ]; then
+        echo "[FATAL] There's no manual for ($PAGE) in section ($SECTION)";
+        return;
+    fi;
+
+    ## Get the section if it isn't specified.
+    local MAN_INFO=$(basename "$MAN_PATH" ".gz");
+    REAL_PAGE=$(   echo $MAN_INFO | cut -d"." -f1);
+    REAL_SECTION=$(echo $MAN_INFO | cut -d"." -f2);
+
+    ## The man pages are separated in:
+    ##   1   Executable programs or shell commands
+    ##   2   System calls (functions provided by the kernel)
+    ##   3   Library calls (functions within program libraries)
+    ##   4   Special files (usually found in /dev)
+    ##   5   File formats and conventions eg /etc/passwd
+    ##   6   Games
+    ##   7   Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)
+    ##   8   System administration commands (usually only for root)
+    ##   9   Kernel routines [Non standard]
+    ##
+    ## We gonna separate our man pages into 2 sections only:
+    ##   System - For everything that aren't "callable" from C.
+    ##   C      - For everything that are "callable" from C.
+    ##
+    local OUTPUT_SECTION="";
+    case $REAL_SECTION in
+        1 | 4 | 5 | 7 | 8 | 9 ) OUTPUT_SECTION="system"; ;;
+        2 | 3                 ) OUTPUT_SECTION="C";      ;;
+    esac
+
+    ## Where we gonna save the manual.
+    local CURR_OS="";
+    case $(uname -a | tr "[:upper:]" "[:lower:]") in
+        *darwin* ) CURR_OS="osx";   ;;
+        *cygwin* ) CURR_OS="cygwin";   ;;
+        *linux*  ) CURR_OS="gnu_linux"; ;;
+    esac
+
+    local FILENAME="${REAL_PAGE}_${CURR_OS}.pdf";
+    local OUTPUT_DIR="$HOME/Documents/Projects/N2OMatt/manpages/$OUTPUT_SECTION";
+    local OUTPUT_PATH="$OUTPUT_DIR/$FILENAME";
+
+    echo "Section        : $REAL_SECTION";
+    echo "Page           : $REAL_PAGE";
+    echo "Man Path       : $MAN_PATH";
+    echo "Output Section : $OUTPUT_SECTION";
+    echo "Output Path    : $OUTPUT_PATH";
+
+    ## Create the directory if needed.
+    mkdir -vp $OUTPUT_DIR;
+
+    # Manual page doesn't exists yet...
+    if [ ! -e $OUTPUT_PATH ]; then
+        echo "Manual doesn't exists yet - Creating now..."
+        ## Redirect stderr          Quiet and from stdin.
+        man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $OUTPUT_PATH;
+    fi;
+
+    xdg-open "$OUTPUT_PATH" > /dev/null 2>&1 &
 }
