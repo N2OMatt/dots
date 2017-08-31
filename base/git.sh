@@ -13,27 +13,33 @@
 ## Aliases                                                                    ##
 ################################################################################
 #Less typing FTW.
+## GUI
 alias ggui="git gui";
-
+## Status
 alias gstatus="git status -s";
+## Log
 alias glog="git log";
-
+## Add
 alias gadd="git add";
+## Commit
 alias gcommit="git commit";
-alias gpush="git push --tags";
+## Pull
 alias gpull="git pull";
+## Tags
 alias gtag="git tag";
-
+## Submodule
 alias gsub-uir="git submodule update --init --recursive";
 alias gsub-add="git submodule add";
-
+## Authors
 alias gauthors="git log --format=\"%aN - <%ae>\" | sort | uniq";
 alias gauthors-top="git shortlog -s -n"
-
+## Branch
 alias gbranch="git branch";
 alias gbranch-curr="git rev-parse --abbrev-ref HEAD";
 alias gbranch-create="git checkout -b";
-
+## Push
+alias gpush="git push --tags";
+alias gpush-curr="git push --tags origin $(gbranch-curr)";
 
 ################################################################################
 ## Functions                                                                  ##
