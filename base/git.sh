@@ -41,6 +41,20 @@ alias gbranch-create="git checkout -b";
 alias gpush="git push --tags";
 alias gpush-curr="git push --tags origin $(gbranch-curr)";
 
+gmerge-curr()
+{
+    gmerge $(gbranch-curr) $1;
+}
+
+gmerge()
+{
+    SRC_BRANCH="$1";
+    DST_BRANCH="$2";
+
+    git checkout $SRC_BRANCH;
+    git merge --no-ff $DST_BRANCH;
+}
+
 ################################################################################
 ## Functions                                                                  ##
 ################################################################################
@@ -57,35 +71,41 @@ gurl-browser()
 
 git-delete-all-branches-but-master()
 {
+    git-delete-all=branches-but-this master;
+}
+
+git-delete-all-branches-but-this()
+{
+    local branch_to_delete="$1";
     local curr_branch=$(gbranch-curr);
-    local force="$1";
+    # local force="$1";
 
     ## Check if we are on master.
     ##   Only delete other branches if we're on master.
-    if [ "$curr_branch" != "master" ]; then
-        echo "[FATAL] Not on master branch. - Currently on [$curr_branch]";
+    if [ "$curr_branch" != "$branch_to_delete" ]; then
+        echo "[FATAL] Not on $branch_to_delete branch. - Currently on [$curr_branch]";
         return 1;
     fi;
 
     ## Delete all branches
     for curr_branch in $(git branch | cut -c 3-); do
         ## Skip master branch (and empty lines)
-        if [ "$curr_branch" == "master" ]; then
+        if [ "$curr_branch" == "$branch_to_delete" ]; then
             continue;
         fi;
 
-        ## User specified --force or -f flags
-        ##   This means that we don't need ask anything...
-        if [ "$force" != "--force" ] && [ "$force" != "-f" ]; then
+        # ## User specified --force or -f flags
+        # ##   This means that we don't need ask anything...
+        # if [ "$force" != "--force" ] && [ "$force" != "-f" ]; then
 
-            echo -n "Delete branch [$curr_branch]: [Y/n]";
-            read YES;
+        #     echo -n "Delete branch [$curr_branch]: [Y/n]";
+        #     read YES;
 
-            if [ "$YES" == "n" ] || [ "$YES" == "N" ]; then
-                echo "  Skipping branch [$curr_branch]";
-                continue;
-            fi;
-        fi;
+        #     if [ "$YES" == "n" ] || [ "$YES" == "N" ]; then
+        #         echo "  Skipping branch [$curr_branch]";
+        #         continue;
+        #     fi;
+        # fi;
 
         git branch -D "$curr_branch"
     done;
