@@ -41,6 +41,7 @@ alias gbranch-create="git checkout -b";
 alias gpush="git push --tags";
 alias gpush-curr="git push --tags origin $(gbranch-curr)";
 
+
 gmerge-curr()
 {
     gmerge $(gbranch-curr) $1;
@@ -51,8 +52,8 @@ gmerge()
     SRC_BRANCH="$1";
     DST_BRANCH="$2";
 
-    git checkout $SRC_BRANCH;
-    git merge --no-ff $DST_BRANCH;
+    git checkout $DST_BRANCH;
+    git merge --no-ff $SRC_BRANCH;
 }
 
 ################################################################################
@@ -74,7 +75,7 @@ git-delete-all-branches-but-master()
     git-delete-all=branches-but-this master;
 }
 
-git-delete-all-branches-but-this()
+git-delete-all-branches-but()
 {
     local branch_to_delete="$1";
     local curr_branch=$(gbranch-curr);
