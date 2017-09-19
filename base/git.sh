@@ -42,6 +42,15 @@ alias gpush="git push --tags";
 alias gpush-curr="git push --tags origin $(gbranch-curr)";
 
 
+gmod-list()
+{
+    if [ -z "$1" ]; then
+        git status;
+    else
+        git status | grep -i $1
+    fi;
+}
+
 gmerge-curr()
 {
     gmerge $(gbranch-curr) $1;
