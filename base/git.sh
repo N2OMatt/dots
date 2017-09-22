@@ -42,6 +42,23 @@ alias gpush="git push --tags";
 alias gpush-curr="git push --tags origin $(gbranch-curr)";
 
 
+################################################################################
+## URL Functions                                                              ##
+################################################################################
+gurl()
+{
+    git remote -v | head -1 | expand -t1 | cut -d" " -f2;
+}
+
+gurl-browser()
+{
+    browser $(gurl)
+}
+
+
+################################################################################
+## Merge Functions                                                            ##
+################################################################################
 gmerge-curr()
 {
     gmerge $(gbranch-curr) $1;
@@ -56,20 +73,10 @@ gmerge()
     git merge --no-ff $SRC_BRANCH;
 }
 
+
 ################################################################################
-## Functions                                                                  ##
+## Branch Functions                                                           ##
 ################################################################################
-gurl()
-{
-    git remote -v | head -1 | expand -t1 | cut -d" " -f2;
-}
-
-gurl-browser()
-{
-    browser $(gurl)
-}
-
-
 git-delete-all-branches-but-master()
 {
     git-delete-all=branches-but-this master;
@@ -112,6 +119,9 @@ git-delete-all-branches-but()
     done;
 }
 
+################################################################################
+## Submodule Functions                                                        ##
+################################################################################
 gsub-remove()
 {
     local SUBNAME="$1";
