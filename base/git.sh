@@ -134,3 +134,15 @@ gsub-remove()
     git rm -f "$SUBNAME";
     rm -rf .git/modules/"$SUBNAME"
 }
+
+################################################################################
+## Status Functions                                                           ##
+################################################################################
+gmod-list()
+{
+    if [ -z "$1" ]; then
+        git status;
+    else
+        git status | grep -i $1
+    fi;
+}
