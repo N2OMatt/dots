@@ -55,5 +55,6 @@ test -z "$PASSWORD" && fatal "password cannot be empty...";
 
 
 ## Add user ;D
-sudo useradd -m "$USER" -p "$PASSWORD";
-sudo usermod -a -G "$GROUP" "$USER";
+useradd -m "$USER";
+echo "$USER:$PASSWORD" | chpasswd;
+usermod -a -G "$GROUP" "$USER";
