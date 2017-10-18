@@ -168,16 +168,40 @@ gmod-list()
 ################################################################################
 gignore-jetbrains()
 {
-    local GITIGNORE_MARK="## JETBRAINS GITIGNORE MARK ##";
+    MARK="## JETBRAINS GITIGNORE MARK ##";
+    URL="https://raw.githubusercontent.com/github/gitignore/master/Global/JetBrains.gitignore";
+
+    gitignore-update "$MARK" "$URL";
+}
+
+gignore-visualstudio()
+{
+    MARK="## VISUAL GITIGNORE MARK ##";
+    URL="https://raw.githubusercontent.com/github/gitignore/master/VisualStudio.gitignore";
+
+    gitignore-update "$MARK" "$URL";
+}
+
+gitignore-update()
+{
+    local GITIGNORE_MARK="$1";
     if [ -f .gitignore ]; then
+        echo "Found .gitignore";
+
         local CONTENTS=$(cat .gitignore | grep "$GITIGNORE_MARK");
         if [ -n "$CONTENTS" ]; then
+            echo "Found $GITIGNORE_MARK - Skipping...";
             return;
         fi;
     fi;
 
-    local URL="https://raw.githubusercontent.com/github/gitignore/master/Global/JetBrains.gitignore";
-
+    echo "Downloading gitignore...";
+    local URL="$2";
     echo $GITIGNORE_MARK >> .gitignore;
     wget -qO- $URL >> .gitignore;
+
+    echo "Done...";
+    echo "";
+
+    head .gitignore;
 }
