@@ -31,6 +31,11 @@ py-scrap()
 ################################################################################
 ## Other                                                                      ##
 ################################################################################
+function my-grip()
+{
+    grip --user=n2omatt --pass="$1";
+}
+
 
 ## In cases that realpath is missing.
 if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
