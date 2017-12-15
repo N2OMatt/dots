@@ -40,3 +40,21 @@ alias du="du -ch" #Grand Total | Human readable.
 ## clear                                                                      ##
 ################################################################################
 alias cl="clear";
+
+##----------------------------------------------------------------------------##
+## expand(1)                                                                  ##
+##----------------------------------------------------------------------------##
+function expand-inplace()
+{
+    FILENAME=$1;
+    TEMP="${FILENAME}.temp";
+
+
+    if [ -z "$FILENAME" ]; then
+        echo "Missing filename...";
+        exit 1;
+    fi;
+
+    expand -t 4 "$FILENAME" > "$TEMP";
+    mv -f "$TEMP" "$FILENAME";
+}
