@@ -86,3 +86,11 @@ openman()
 
     xdg-open "$OUTPUT_PATH" > /dev/null 2>&1 &
 }
+
+openman-sync()
+{
+    cd "$HOME/Documents/Projects/N2OMatt/manpages/$OUTPUT_SECTION";
+    git add .
+    git commit -m "[openman-sync] $(date)";
+    git push origin master;
+}
