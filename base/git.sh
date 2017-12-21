@@ -137,6 +137,13 @@ git-delete-all-branches-but()
 ################################################################################
 ## Submodule Functions                                                        ##
 ################################################################################
+gsub-add-libs()
+{
+    for LIB in $@; do
+        git submodule add https://github.com/AmazingCow-Libs/$LIB;
+    done;
+}
+
 gsub-remove()
 {
     local SUBNAME="$1";
