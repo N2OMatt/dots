@@ -55,3 +55,14 @@ fi;
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+my-lhc()
+{
+    COMPANY="AmazingCow";
+    if [ -n "$1" ]; then
+        COMPANY="$1";
+    fi;
+
+    echo "author  : n2omatt <n2omatt@amaizingcow.com" >  lhcrc;
+    echo "company : $COMPANY"                         >> lhcrc;
+}
