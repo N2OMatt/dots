@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 ##~---------------------------------------------------------------------------##
 ##                        ____                       _   _                    ##
 ##                  _ __ |___ \ ___  _ __ ___   __ _| |_| |_                  ##
@@ -5,53 +6,47 @@
 ##                 | | | |/ __/ (_) | | | | | | (_| | |_| |_                  ##
 ##                 |_| |_|_____\___/|_| |_| |_|\__,_|\__|\__|                 ##
 ##                              www.n2omatt.com                               ##
-##  File      : hacks.sh                                                      ##
+##  File      : install.sh                                                    ##
 ##  Project   : dots                                                          ##
-##  Date      : Feb 24, 2017                                                  ##
+##  Date      : Jan 02, 2018                                                  ##
 ##  License   : GPLv3                                                         ##
 ##  Author    : n2omatt <n2omatt@amazingcow.com>                              ##
-##  Copyright : n2omatt - 2017, 2018                                          ##
+##  Copyright : n2omatt - 2018                                                ##
 ##                                                                            ##
 ##  Description :                                                             ##
-##    Stuff that I don't know where to place.                                 ##
+##    Installation script for BSD machines.                                   ##
 ##---------------------------------------------------------------------------~##
 
 ##----------------------------------------------------------------------------##
-## URL                                                                        ##
+## Variables                                                                  ##
 ##----------------------------------------------------------------------------##
-alias url-encode='python -c "import sys, urllib as ul; \
-    print ul.quote_plus(\" \".join(sys.argv[1:]))"'
+OS=$1;
+DOTS_DIR=$2
 
-alias abs-path='python -c "import os.path; \
-                           import sys; \
-                           print os.path.abspath(os.path.expanduser(sys.argv[1]))"'
+BASE_FILES="AmazingCow.sh                \
+            bash-status-line_bindings.sh \
+            development.sh               \
+            git.sh                       \
+            hacks.sh                     \
+            manual.sh                    \
+            youtube-dl.sh                \
+            ps1.sh";
+
+LOCAL_FILES="files.sh \
+             coreutils.h"
 
 
 ##----------------------------------------------------------------------------##
-## Python Scrap                                                               ##
+## Script                                                                     ##
 ##----------------------------------------------------------------------------##
-py-scrap()
-{
-    subl $(mktemp)".py";
-}
+echo "----> Calling dots install_helper.sh";
+echo "------> OS       : $OS";
+echo "------> DOTS_DIR : $DOTS_DIR";
 
-
-##----------------------------------------------------------------------------##
-## Other                                                                      ##
-##----------------------------------------------------------------------------##
-function my-grip()
-{
-    grip --user=n2omatt --pass="$1";
-}
-
-
-## In cases that realpath is missing.
-if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
-    alias realpath="readlink -f"
-fi;
-
-
-## Make the bash completion works.
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+./install_helper.sh             \
+    --basedir    "./base"       \
+    --localdir   "$OS"          \
+    --outputdir  "./output"     \
+    --dotsdir    "$DOTS_DIR"    \
+    --basefiles  "$BASE_FILES"  \
+    --localfiles "$LOCAL_FILES"
