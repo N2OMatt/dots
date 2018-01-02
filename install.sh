@@ -17,6 +17,7 @@ case $(uname -a | tr "[:upper:]" "[:lower:]") in
     *darwin* ) CURR_OS="darwin";    ;;
     *cygwin* ) CURR_OS="cygwin";    ;;
     *linux*  ) CURR_OS="gnu_linux"; ;;
+    *freebsd* ) CURR_OS="bsd";      ;;
 esac
 
 BASHRC="$HOME/.bashrc";
