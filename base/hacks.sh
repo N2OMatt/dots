@@ -55,31 +55,3 @@ fi;
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-
-
-repeat()
-{
-    target=0;
-    count=0;
-    cmd="";
-
-    check=$(echo "$1" | grep -E ^\-?[0-9]+$);
-    if [ -z $check ]; then
-        target=$2;
-        cmd="$1";
-    else
-        target=$1;
-        cmd="$2";
-    fi;
-
-    while true; do
-        $cmd;
-
-        echo "$count - $target";
-        count=$(( count + 1 ));
-
-        if [ $count == $target ]; then
-            break;
-        fi;
-    done;
-}
