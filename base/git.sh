@@ -112,11 +112,6 @@ gmerge()
 ##----------------------------------------------------------------------------##
 ## Branch Functions                                                           ##
 ##----------------------------------------------------------------------------##
-git-delete-all-branches-but-master()
-{
-    git-delete-all=branches-but-this master;
-}
-
 git-delete-all-branches-but()
 {
     local branch_to_delete="$1";
@@ -153,6 +148,12 @@ git-delete-all-branches-but()
         git branch -D "$curr_branch"
     done;
 }
+
+git-delete-all-branches-but-master()
+{
+    git-delete-all-branches-but master;
+}
+
 
 ##----------------------------------------------------------------------------##
 ## Submodule Functions                                                        ##
