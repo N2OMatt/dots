@@ -47,6 +47,26 @@ alias gbranch-create="git checkout -b";
 ## Push
 alias gpush="git push --tags";
 
+##----------------------------------------------------------------------------##
+## GUI Versions                                                               ##
+##----------------------------------------------------------------------------##
+ggui-all()
+{
+    for TOPDIR in $@; do
+        for DIR in $(ls $TOPDIR); do
+            cd $TOPDIR/$DIR;
+
+            ## COWTODO(n2omatt): check if we're on git repo...
+            IS_DIRTY=$(git status -s);
+            if [ -n "$IS_DIRTY" ]; then
+                git gui &
+            fi;
+
+            cd - > /dev/null 2>&1;
+        done
+    done
+}
+
 
 ################################################################################
 ## Push Functions                                                             ##
