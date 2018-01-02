@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ################################################################################
 ## File    : cygpath_helpers.sh                                               ##
 ## Project : dots                                                             ##
