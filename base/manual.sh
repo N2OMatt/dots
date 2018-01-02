@@ -102,7 +102,14 @@ openman()
 openman-sync()
 {
     cd "$HOME/Documents/Projects/N2OMatt/manpages/$OUTPUT_SECTION";
+
+    ## Commit everything that we have on local.
     git add .
     git commit -m "[openman-sync] $(date)";
+
+    ## Accept everything from remove.
+    git pull --commit --no-edit origin master;
+
+    ## Sync...
     git push origin master;
 }
