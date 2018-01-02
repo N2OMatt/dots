@@ -71,9 +71,10 @@ openman()
     ## Where we gonna save the manual.
     local CURR_OS="";
     case $(uname -a | tr "[:upper:]" "[:lower:]") in
-        *darwin* ) CURR_OS="osx";   ;;
-        *cygwin* ) CURR_OS="cygwin";   ;;
+        *darwin* ) CURR_OS="osx";       ;;
+        *cygwin* ) CURR_OS="cygwin";    ;;
         *linux*  ) CURR_OS="gnu_linux"; ;;
+        *bsd*    ) CURR_OS="bsd";       ;;
     esac
 
     local FILENAME="${REAL_PAGE}_${CURR_OS}.pdf";
