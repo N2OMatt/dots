@@ -23,8 +23,7 @@
 OS=$1;
 DOTS_DIR=$2
 
-BASE_FILES="AmazingCow.sh                \
-            bash-status-line_bindings.sh \
+BASE_FILES="bash-status-line_bindings.sh \
             development.sh               \
             git.sh                       \
             hacks.sh                     \
@@ -33,7 +32,7 @@ BASE_FILES="AmazingCow.sh                \
             ps1.sh";
 
 LOCAL_FILES="files.sh \
-             coreutils.h"
+             coreutils.sh"
 
 
 ##----------------------------------------------------------------------------##
