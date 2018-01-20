@@ -26,6 +26,7 @@ DOTS_DIR=$2
 BASE_FILES="bash-status-line_bindings.sh \
             coreutils.sh                 \
             development.sh               \
+            editor.sh                    \
             git.sh                       \
             hacks.sh                     \
             manual.sh                    \
