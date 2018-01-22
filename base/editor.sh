@@ -17,11 +17,5 @@
 ##                                                                            ##
 ##---------------------------------------------------------------------------~##
 
-SUBLIME=$(which subl);
-VSCODE=$(which code);
-EDITOR="";
-
-test -n "$SUBLIME" && EDITOR="$SUBLIME";
-test -n "$VSCODE"  && EDITOR="$VSCODE";
-
+EDITOR="code";
 alias editor="$EDITOR ";
