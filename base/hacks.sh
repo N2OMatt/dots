@@ -58,6 +58,6 @@ my-lhc()
         COMPANY="$1";
     fi;
 
-    echo "author  : n2omatt <n2omatt@amaizingcow.com" >  lhcrc;
-    echo "company : $COMPANY"                         >> lhcrc;
+    echo "author  : n2omatt <n2omatt@amaizingcow.com>" >  lhcrc;
+    echo "company : $COMPANY"                          >> lhcrc;
 }
