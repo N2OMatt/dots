@@ -69,13 +69,7 @@ openman()
     esac
 
     ## Where we gonna save the manual.
-    local CURR_OS="";
-    case $(uname -a | tr "[:upper:]" "[:lower:]") in
-        *darwin* ) CURR_OS="osx";       ;;
-        *cygwin* ) CURR_OS="cygwin";    ;;
-        *linux*  ) CURR_OS="gnu_linux"; ;;
-        *bsd*    ) CURR_OS="bsd";       ;;
-    esac
+    local CURR_OS="$(simple-os-name --type)";
 
     local FILENAME="${REAL_PAGE}_${CURR_OS}.pdf";
     local OUTPUT_DIR="$HOME/Documents/Projects/N2OMatt/manpages/$OUTPUT_SECTION";
@@ -97,6 +91,8 @@ openman()
         man -t $1 $2 2> /dev/null | ps2pdf -dQUIET - $OUTPUT_PATH;
     fi;
 
+    ## COWTODO(n2omatt): The ps2pdf isn't supported by Msys2 
+    ## so we gonna have find and alternative later...
     xdg-open "$OUTPUT_PATH" > /dev/null 2>&1 &
 }
 

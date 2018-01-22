@@ -28,20 +28,15 @@ alias abs-path='python -c "import os.path; \
 
 
 ##----------------------------------------------------------------------------##
-## Python Scrap                                                               ##
-##----------------------------------------------------------------------------##
-py-scrap()
-{
-    subl $(mktemp)".py";
-}
-
-
-##----------------------------------------------------------------------------##
 ## Other                                                                      ##
 ##----------------------------------------------------------------------------##
 function my-grip()
 {
-    grip --user=n2omatt --pass="$1";
+    if [ -n "$(whereis grip | cut -d":" -f2 | cut -d" " -f2)" ]; then
+        grip --user=n2omatt --pass="$1";
+    else
+        echo "grip isn't installed.";
+    fi;
 }
 
 
@@ -63,6 +58,6 @@ my-lhc()
         COMPANY="$1";
     fi;
 
-    echo "author  : n2omatt <n2omatt@amaizingcow.com" >  lhcrc;
-    echo "company : $COMPANY"                         >> lhcrc;
+    echo "author  : n2omatt <n2omatt@amaizingcow.com>" >  lhcrc;
+    echo "company : $COMPANY"                          >> lhcrc;
 }
