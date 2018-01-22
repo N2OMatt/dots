@@ -21,26 +21,21 @@
 ##----------------------------------------------------------------------------##
 ## Variables                                                                  ##
 ##----------------------------------------------------------------------------##
-case $(uname -a | tr "[:upper:]" "[:lower:]") in
-    *darwin*  ) CURR_OS="darwin";    ;;
-    *cygwin*  ) CURR_OS="cygwin";    ;;
-    *linux*   ) CURR_OS="gnu_linux"; ;;
-    *freebsd* ) CURR_OS="bsd";       ;;
-esac
-
+OS_TYPE=$(simple-os-name --type);
 BASHRC="$HOME/.bashrc";
-DOTS_DIR="$HOME/.${CURR_OS}_dots"
+DOTS_DIR="$HOME/.${OS_TYPE}_dots"
 BASHRC_ENTRY_FILENAME="$DOTS_DIR/main.sh"
-
 
 ##----------------------------------------------------------------------------##
 ## Script                                                                     ##
 ##----------------------------------------------------------------------------##
 ##------------------------------------------------------------------------------
 ## Info
-echo "OS        : $CURR_OS";
+echo "-------------------------------------------------------------------------";
+echo "OS        : $OS_TYPE";
 echo ".bashrc   : $BASHRC";
 echo ".dots dir : $DOTS_DIR";
+echo "-------------------------------------------------------------------------";
 
 ##------------------------------------------------------------------------------
 ## Check .bashrc
@@ -61,8 +56,8 @@ fi;
 echo "--> Creating the dots dir ($DOTS_DIR)";
 mkdir -p "$DOTS_DIR";
 
-echo "--> Calling $CURR_OS install script.";
-$CURR_OS/install.sh $CURR_OS $DOTS_DIR
+echo "--> Calling $OS_TYPE install script.";
+$OS_TYPE/install.sh $OS_TYPE $DOTS_DIR
 
 echo "--> Copying everything to dots dir ($DOTS_DIR)"
 cp -rf ./output/* "$DOTS_DIR";
