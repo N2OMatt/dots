@@ -32,7 +32,11 @@ alias abs-path='python -c "import os.path; \
 ##----------------------------------------------------------------------------##
 function my-grip()
 {
-    grip --user=n2omatt --pass="$1";
+    if [ -n "$(whereis grip | cut -d":" -f2 | cut -d" " -f2)" ]; then
+        grip --user=n2omatt --pass="$1";
+    else
+        echo "grip isn't installed.";
+    fi;
 }
 
 
