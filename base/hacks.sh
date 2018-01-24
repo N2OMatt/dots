@@ -27,9 +27,26 @@ alias abs-path='python -c "import os.path; \
                            print os.path.abspath(os.path.expanduser(sys.argv[1]))"'
 
 
+
+##----------------------------------------------------------------------------##
+## ????                                                                       ##
+##----------------------------------------------------------------------------##
+## In cases that realpath is missing.
+if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
+    alias realpath="readlink -f"
+fi;
+
+## Make the bash completion works.
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+
 ##----------------------------------------------------------------------------##
 ## Other                                                                      ##
 ##----------------------------------------------------------------------------##
+##------------------------------------------------------------------------------
+## Provides a convenient way to init grip with the user and password.
 function my-grip()
 {
     if [ -n "$(whereis grip | cut -d":" -f2 | cut -d" " -f2)" ]; then
@@ -39,18 +56,8 @@ function my-grip()
     fi;
 }
 
-
-## In cases that realpath is missing.
-if [ -n "$(whereis realpath | cut -d":" -f2 | cut -d" " -f2)" ]; then
-    alias realpath="readlink -f"
-fi;
-
-
-## Make the bash completion works.
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
+##------------------------------------------------------------------------------
+## Provides a convenient to initialize the lhcrc file.
 my-lhc()
 {
     COMPANY="AmazingCow";
