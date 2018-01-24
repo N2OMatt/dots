@@ -17,14 +17,45 @@
 ##    Installation script for dots.                                           ##
 ##---------------------------------------------------------------------------~##
 
+## Stop on errors...
+set -e;
+
+find_real_user_home()
+{
+    ##--------------------------------------------------------------------------
+    ## We need supress the errors here since the printenv might fail...
+    ## Restore it at the end of the function.
+    set +e;
+
+    if [ $UID == 0 ]; then
+        USER=$(printenv SUDO_USER);
+        if [ -z "$USER" ]; then
+            echo "Installing as root user...";
+            export REAL_USER_HOME="$HOME";
+        else
+            echo "Installing with sudo...";
+            export REAL_USER_HOME=$(getent passwd "$USER" | cut -d: -f6);
+        fi;
+    else
+        echo "Installing as normal user...";
+        export REAL_USER_HOME="$HOME";
+    fi;
+
+    ##--------------------------------------------------------------------------
+    ## Restoring the error handling...
+    set -e;
+}
 
 ##----------------------------------------------------------------------------##
 ## Variables                                                                  ##
 ##----------------------------------------------------------------------------##
-OS_TYPE=$(simple-os-name --type);
-BASHRC="$HOME/.bashrc";
-DOTS_DIR="$HOME/.${OS_TYPE}_dots"
+find_real_user_home;
+
+OS_TYPE=$($(whereis simple-os-name | cut -d":" -f2) --type);
+BASHRC="$REAL_USER_HOME/.bashrc";
+DOTS_DIR="$REAL_USER_HOME/.${OS_TYPE}_dots"
 BASHRC_ENTRY_FILENAME="$DOTS_DIR/main.sh"
+
 
 ##----------------------------------------------------------------------------##
 ## Script                                                                     ##
@@ -36,6 +67,7 @@ echo "OS        : $OS_TYPE";
 echo ".bashrc   : $BASHRC";
 echo ".dots dir : $DOTS_DIR";
 echo "-------------------------------------------------------------------------";
+
 
 ##------------------------------------------------------------------------------
 ## Check .bashrc
@@ -66,7 +98,10 @@ rm -rf output;
 ##------------------------------------------------------------------------------
 ## Search on .bashrc if we already have an entry for dots
 ## and if not create one!
+set +e
 GREP_RESULT=$(cat "$BASHRC" | grep "$BASHRC_ENTRY_FILENAME");
+set -e
+
 if [ -z  "$GREP_RESULT" ]; then
     echo "--> Did not found an entry in $BASHRC - Creating it...";
     echo "[[ -s \"$BASHRC_ENTRY_FILENAME\" ]] && source \"$BASHRC_ENTRY_FILENAME\"" >> $BASHRC;
