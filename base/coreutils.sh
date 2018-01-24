@@ -34,3 +34,7 @@ alias du="du -ch" ## Grand Total | Human readable.
 ##------------------------------------------------------------------------------
 ## clear
 alias cl="clear";
+
+##------------------------------------------------------------------------------
+## source
+alias reload-bashrc="source $HOME/.bashrc"
