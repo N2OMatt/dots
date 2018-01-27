@@ -61,10 +61,38 @@ function my-grip()
 my-lhc()
 {
     COMPANY="AmazingCow";
-    if [ -n "$1" ]; then
-        COMPANY="$1";
-    fi;
+    IGNORE="false";
 
+    ##--------------------------------------------------------------------------
+    ## Parse the options.
+    for OPT in "$@"; do
+        if [ "$OPT" == "--ignore" ]; then
+            IGNORE="true";
+        else
+            COMPANY="$OPT"
+        fi;
+    done
+
+    ##--------------------------------------------------------------------------
+    ## Add the info to lhcrc.
     echo "author  : n2omatt <n2omatt@amazingcow.com>" >  lhcrc;
     echo "company : $COMPANY"                         >> lhcrc;
+
+    ##--------------------------------------------------------------------------
+    ## Log the info.
+    echo "[lhcrc contents]";
+    cat lhcrc;
+
+    ##--------------------------------------------------------------------------
+    ## Add to gitignore if needed.
+    if [ "$IGNORE" == "true" ]; then
+        ## .gitignore doesn't exists yet...
+        if [ ! -e ".gitignore" ]; then
+            echo "lhcrc" > .gitignore;
+        ## .gitignore exits - So check if we don't already had an entry.
+        else
+            grep "lhcrcd" .gitignore > /dev/null;
+            test $? == 0 || echo -e "\nlhcrc\n" >> .gitignore
+        fi;
+    fi;
 }
