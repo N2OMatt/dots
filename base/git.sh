@@ -20,8 +20,6 @@
 ## Aliases                                                                    ##
 ##----------------------------------------------------------------------------##
 #Less typing FTW.
-## GUI
-alias ggui="git gui";
 ## Status
 alias gstatus="git status -s";
 ## Log
@@ -47,9 +45,57 @@ alias gbranch-create="git checkout -b";
 ## Push
 alias gpush="git push --tags";
 
+
+function get_git_path()
+{
+    local os_kernel=$(simple-os-name --kernel);
+    local os_type=$(simple-os-name --type);
+
+    ##--------------------------------------------------------------------------
+    ## We're on Windows - So we need be trick with the paths...
+    if [ "$os_kernel" == "microsoft" ]; then
+        test "$os_type" == "gnu_linux" && WINPATH="/mnt";
+        test "$os_type" == "cygwin"    && WINPATH="/cygdrive";
+        test "$os_type" == "msys"      && WINPATH="";
+        test "$os_type" == "mingw"     && WINPATH="";
+
+        echo "$WINPATH/c/Program Files/Git/cmd";
+
+    ##--------------------------------------------------------------------------
+    ## Standard Unix...
+    else
+        echo $(dirname $(which git));
+    fi;
+}
+
+function get_executable_suffix()
+{
+    local os_kernel=$(simple-os-name --kernel);
+    if [ "$os_kernel" == "microsoft" ]; then
+        echo ".exe";
+    fi;
+}
+
+
 ##----------------------------------------------------------------------------##
-## GUI Versions                                                               ##
+## GUI                                                                        ##
 ##----------------------------------------------------------------------------##
+function ggui()
+{
+    OLD_CWD="$PWD";
+    if [ -d "$1" ]; then
+        cd "$1";
+    fi;
+
+    local git_path="$(get_git_path)";
+    local exe_suffix="$(get_executable_suffix)";
+
+    "$git_path/"git"$exe_suffix" gui &;
+
+    cd "$OLD_CWD";
+}
+
+
 ggui-all()
 {
     for TOPDIR in $@; do
@@ -59,7 +105,7 @@ ggui-all()
             ## COWTODO(n2omatt): check if we're on git repo...
             IS_DIRTY=$(git status -s);
             if [ -n "$IS_DIRTY" ]; then
-                git gui &
+                ggui &
             fi;
 
             cd - > /dev/null 2>&1;
