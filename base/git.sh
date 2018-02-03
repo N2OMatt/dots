@@ -90,7 +90,7 @@ function ggui()
     local git_path="$(get_git_path)";
     local exe_suffix="$(get_executable_suffix)";
 
-    "$git_path/"git"$exe_suffix" gui &;
+    "$git_path/"git"$exe_suffix" gui &
 
     cd "$OLD_CWD";
 }
