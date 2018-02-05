@@ -44,7 +44,8 @@ alias gbranch-curr="git rev-parse --abbrev-ref HEAD";
 alias gbranch-create="git checkout -b";
 ## Push
 alias gpush="git push --tags";
-
+## Config
+alias git-ignore-filemodes="git config  core.filemode false";
 
 function get_git_path()
 {
