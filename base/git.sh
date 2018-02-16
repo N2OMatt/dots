@@ -225,6 +225,24 @@ gsub-remove()
     rm -rf .git/modules/"$SUBNAME"
 }
 
+gsub-pull-all()
+{
+    local MODULES_PATHS=$(cat .gitmodules | grep path | cut -d"=" -f2);
+    for MODULE_PATH in $MODULES_PATHS; do
+        cd $MODULE_PATH;
+
+        local HAS_CHANGES=$(git status -suno);
+        if [ -n "$HAS_CHANGES" ]; then
+            echo "$MODULE_PATH has changes: ";
+            echo "$HAS_CHANGES";
+        else
+            git pull --quiet origin $(gbranch-curr);
+        fi;
+
+        cd -;
+    done;
+}
+
 ##----------------------------------------------------------------------------##
 ## Status Functions                                                           ##
 ##----------------------------------------------------------------------------##
