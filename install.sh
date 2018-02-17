@@ -17,39 +17,16 @@
 ##    Installation script for dots.                                           ##
 ##---------------------------------------------------------------------------~##
 
-## Stop on errors...
-set -e;
+##----------------------------------------------------------------------------##
+## Imports                                                                    ##
+##----------------------------------------------------------------------------##
+source /usr/local/src/acow_shellscript_utils.sh
 
-find_real_user_home()
-{
-    ##--------------------------------------------------------------------------
-    ## We need supress the errors here since the printenv might fail...
-    ## Restore it at the end of the function.
-    set +e;
-
-    if [ $UID == 0 ]; then
-        USER=$(printenv SUDO_USER);
-        if [ -z "$USER" ]; then
-            echo "Installing as root user...";
-            export REAL_USER_HOME="$HOME";
-        else
-            echo "Installing with sudo...";
-            export REAL_USER_HOME=$(getent passwd "$USER" | cut -d: -f6);
-        fi;
-    else
-        echo "Installing as normal user...";
-        export REAL_USER_HOME="$HOME";
-    fi;
-
-    ##--------------------------------------------------------------------------
-    ## Restoring the error handling...
-    set -e;
-}
 
 ##----------------------------------------------------------------------------##
 ## Variables                                                                  ##
 ##----------------------------------------------------------------------------##
-find_real_user_home;
+REAL_USER_HOME=$(find_real_user_home);
 
 OS_TYPE=$($(whereis simple-os-name | cut -d":" -f2) --type);
 BASHRC="$REAL_USER_HOME/.bashrc";
@@ -62,11 +39,11 @@ BASHRC_ENTRY_FILENAME="$DOTS_DIR/main.sh"
 ##----------------------------------------------------------------------------##
 ##------------------------------------------------------------------------------
 ## Info
-echo "-------------------------------------------------------------------------";
+center_text " [dots installer] ";
 echo "OS        : $OS_TYPE";
 echo ".bashrc   : $BASHRC";
 echo ".dots dir : $DOTS_DIR";
-echo "-------------------------------------------------------------------------";
+center_text "-"
 
 
 ##------------------------------------------------------------------------------
@@ -109,5 +86,7 @@ else
     echo "--> Found an entry in $BASHRC - Keeping it...";
 fi;
 
-echo "";
-echo "Installed...";
+
+echo -e "\nInstalled...";
+center_text "";
+echo -e "\n";
