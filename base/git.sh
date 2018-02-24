@@ -99,14 +99,23 @@ function ggui()
 
 ggui-all()
 {
-    for TOPDIR in $@; do
+    local ALL_DIRS="$@";
+    test -z "$ALL_DIRS" && ALL_DIRS=".";
+
+    for TOPDIR in $ALL_DIRS; do
+        echo "Checking ($TOPDIR)";
+
         for DIR in $(ls $TOPDIR); do
-            cd $TOPDIR/$DIR;
+            echo "-- Entering: (${TOPDIR}/${DIR})";
+            cd "${TOPDIR}/${DIR}";
 
             ## COWTODO(n2omatt): check if we're on git repo...
-            IS_DIRTY=$(git status -s);
+            local IS_DIRTY=$(git status -s);
             if [ -n "$IS_DIRTY" ]; then
+                echo "---- Dirty...";
                 ggui &
+            else
+                echo "---- Clean...";
             fi;
 
             cd - > /dev/null 2>&1;
