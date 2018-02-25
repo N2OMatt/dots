@@ -28,6 +28,7 @@ BASE_FILES="bash-status-line_bindings.sh \
             development.sh               \
             editor.sh                    \
             git.sh                       \
+            gitcheck.sh                  \
             hacks.sh                     \
             manual.sh                    \
             youtube-dl.sh                \
