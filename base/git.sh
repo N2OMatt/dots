@@ -228,15 +228,25 @@ gsub-add-libs()
 
 gsub-remove()
 {
-    local SUBNAME="$1";
+    local SUBMODULE_NAME=$(trim "$1" "/");
+    local SUBMODULE_PATH=$(trim "$1" "/");
 
-    if [ -z "$SUBNAME" ]; then
-        echo "[FATAL] Missing submodule name...";
-        return -1;
-    fi;
+    echo "Removing submodule: $SUBMODULE_NAME";
 
-    git rm -f "$SUBNAME";
-    rm -rf .git/modules/"$SUBNAME"
+    set -e; ## Fail fast here...
+
+    git config -f .git/config --remove-section submodule."$SUBMODULE_NAME";
+    git config -f .gitmodules --remove-section submodule."$SUBMODULE_NAME";
+
+    git add .gitmodules;
+    git rm --cached "$SUBMODULE_PATH";
+
+    git commit -m "- Removing submodule: ($SUBMODULE_NAME).";
+
+    rm -rf "$SUBMODULE_PATH";
+    rm -rf .git/modules/"$SUBMODULE_NAME";
+
+    set +e; ## Disable: (Fail fast here...)
 }
 
 gsub-pull-all()
